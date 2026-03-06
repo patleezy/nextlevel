@@ -203,6 +203,16 @@ const GAMES = [
   { id:138, title:"Xenoblade Chronicles 3",              consoles:["Nintendo Switch"],                              excl:true,  genre:["rpg","adventure","story"],            rating:"T",    price:60, slug:"xenoblade-chronicles-3",                  mc:89, ign:9.0, time:"long",    coop:false, sib:false, pk:false, soon:false, desc:"Epic open-world JRPG with a deep combat system and sweeping story. One of Switch's greatest achievements — for dedicated older teens.", quote:"A colossal, emotional RPG masterpiece. — IGN" },
   { id:139, title:"Endless Ocean Luminous",              consoles:["Nintendo Switch"],                              excl:true,  genre:["simulation","exploration","casual"],  rating:"E",    price:30, slug:"endless-ocean-luminous",                  mc:62, ign:7.0, time:"endless", coop:true,  sib:false, pk:true,  soon:false, desc:"Swim the ocean, discover sea life, and share peaceful dives online. A uniquely calming experience — kids who love marine biology will love this.", quote:"A tranquil, beautiful digital aquarium. — Nintendo Life" },
   { id:140, title:"Deltarune",                           consoles:["Nintendo Switch","PS4/PS5","PC"],               excl:false, genre:["rpg","story","adventure"],            rating:"E10+", price:0,  slug:"deltarune",                               mc:86, ign:8.5, time:"medium",  coop:false, sib:false, pk:false, soon:false, desc:"The free sequel to Undertale from Toby Fox. Chapters 1-2 are completely free — a masterful story-driven RPG with unforgettable characters.", quote:"Every bit the worthy successor to Undertale. — IGN" },
+  { id:141, title:"Astro Bot",                           consoles:["PlayStation 5"],                                excl:true,  genre:["platformer","adventure","family"],      rating:"E10+", price:40, slug:"astro-bot",                               mc:94, ign:9.0, time:"medium",  coop:false, sib:false, pk:true,  soon:false, desc:"The 2024 Game of the Year — a Pixar-quality 3D platformer that PlayStation fans of all ages will adore. Pure joy from start to finish.", quote:"The best 3D platformer of the decade. — VGC" },
+  { id:142, title:"Balatro",                             consoles:["Nintendo Switch","PlayStation 5","Xbox","PC","Mobile"], excl:false, genre:["strategy","casual","puzzle"],   rating:"E10+", price:15, slug:"balatro",                                 mc:90, ign:9.0, time:"endless", coop:false, sib:false, pk:true,  soon:false, desc:"A poker-themed roguelike card game that's hypnotically addictive. Warning: it's hard to put down. Best for teens and parents who love strategy.", quote:"Ludicrously fun and remarkably approachable. — IGN" },
+  { id:143, title:"Super Mario Party Jamboree",          consoles:["Nintendo Switch"],                              excl:true,  genre:["party","family","multiplayer"],        rating:"E",    price:60, slug:"super-mario-party-jamboree",              mc:82, ign:9.0, time:"endless", coop:true,  sib:true,  pk:true,  soon:false, desc:"The best Mario Party ever — 7 boards, 110+ minigames, and a huge online mode. The go-to family game night game for all ages.", quote:"The best Mario Party to date. — Nintendo Life" },
+  { id:144, title:"Kirby and the Forgotten Land",        consoles:["Nintendo Switch"],                              excl:true,  genre:["platformer","adventure","family"],      rating:"E10+", price:60, slug:"kirby-and-the-forgotten-land",            mc:85, ign:8.5, time:"medium",  coop:true,  sib:true,  pk:true,  soon:false, desc:"Kirby's first full 3D adventure through a post-apocalyptic world. Incredible co-op mode lets a second player join as Bandana Waddle Dee — perfect for parent and child.", quote:"A delightful first 3D adventure for Kirby. — IGN" },
+  { id:145, title:"Mario & Luigi: Brothership",          consoles:["Nintendo Switch"],                              excl:true,  genre:["rpg","adventure","story"],             rating:"E10+", price:60, slug:"mario-luigi-brothership",                 mc:80, ign:8.5, time:"long",    coop:false, sib:false, pk:false, soon:false, desc:"The beloved RPG duo returns in a vibrant oceanic adventure. Turn-based combat with clever timing mechanics — a great first RPG for older kids.", quote:"A charming, inventive return for the brothers. — IGN" },
+  { id:146, title:"Minecraft Legends",                   consoles:["Nintendo Switch","PlayStation 5","Xbox","PC"],  excl:false, genre:["strategy","adventure","creative"],    rating:"E10+", price:30, slug:"minecraft-legends",                       mc:71, ign:7.0, time:"medium",  coop:true,  sib:true,  pk:false, soon:false, desc:"A Minecraft action-strategy spinoff where you lead mobs against Piglins. Great for Minecraft fans who want something with more structure.", quote:"A fun new angle on the Minecraft universe. — Nintendo Life" },
+  { id:147, title:"It Takes Two",                        consoles:["Nintendo Switch","PlayStation 5","Xbox","PC"],  excl:false, genre:["co-op","adventure","platformer"],     rating:"T",    price:40, slug:"it-takes-two",                            mc:88, ign:9.0, time:"long",    coop:true,  sib:false, pk:true,  soon:false, desc:"A cooperative masterpiece designed for exactly two players. Parents and older kids will love solving creative puzzles together — it requires zero split-screen squinting.", quote:"One of the greatest co-op games ever made. — IGN" },
+  { id:148, title:"Ori and the Will of the Wisps",       consoles:["Nintendo Switch","Xbox","PC"],                  excl:false, genre:["platformer","adventure","story"],      rating:"E",    price:30, slug:"ori-and-the-will-of-the-wisps",           mc:90, ign:9.0, time:"medium",  coop:false, sib:false, pk:true,  soon:false, desc:"Breathtakingly beautiful platformer with a touching story. One of the most visually stunning games ever made — emotional and accessible for kids 8+.", quote:"A masterpiece of motion, music, and heart. — IGN" },
+  { id:149, title:"Hollow Knight",                       consoles:["Nintendo Switch","PlayStation 5","Xbox","PC"],  excl:false, genre:["adventure","exploration","platformer"], rating:"E",   price:15, slug:"hollow-knight",                           mc:90, ign:9.0, time:"long",    coop:false, sib:false, pk:false, soon:false, desc:"A stunning hand-drawn underground insect kingdom to explore. One of the greatest indie games ever — ideal for patient older kids who love discovery and challenge.", quote:"A triumph of atmosphere and design. — IGN" },
+  { id:150, title:"Minecraft Education",                 consoles:["PC","Xbox","Mobile"],                           excl:false, genre:["educational","creative","sandbox"],   rating:"E",    price:0,  slug:"minecraft-education-edition",             mc:null,ign:null,time:"endless", coop:true,  sib:true,  pk:true,  soon:false, desc:"The classroom version of Minecraft — free for many schools and available for families. Build, code, and learn together in the world kids already love.", quote:"Learning disguised as the world's most popular game. — Common Sense Media" },
 ];
 
 // ─── SMALL UTILITIES ──────────────────────────────────────────────────────────
@@ -249,7 +259,7 @@ function GameCard({ game, activeProfile, wishlist, onWishlist, compareList, onCo
   const owned = activeProfile?.owned?.includes(game.id);
 
   return (
-    <div className="gcard" style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${isNS2 ? "rgba(255,107,53,0.3)" : "rgba(255,255,255,0.07)"}`, borderRadius: 16, padding: 14, position: "relative", opacity: owned ? 0.4 : 1, transition: "transform 0.18s, box-shadow 0.18s" }}>
+    <div className="gcard" style={{ background: "rgba(255,255,255,0.05)", border: `1px solid ${isNS2 ? "rgba(255,107,53,0.4)" : "rgba(255,255,255,0.12)"}`, borderRadius: 16, padding: 14, position: "relative", opacity: owned ? 0.4 : 1, transition: "transform 0.18s, box-shadow 0.18s" }}>
       {isNS2 && <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "linear-gradient(90deg,#ff6b35,#f59e0b)", borderRadius: "16px 16px 0 0" }} />}
       {owned && <div style={{ position: "absolute", top: 8, left: 8, background: "rgba(99,102,241,0.2)", border: "1px solid rgba(99,102,241,0.3)", borderRadius: 100, padding: "1px 7px", fontSize: 9, fontWeight: 800, color: "#a5b4fc" }}>✓ Owned</div>}
       <div style={{ position: "absolute", top: 10, right: 10, display: "flex", gap: 4 }}>
@@ -276,7 +286,7 @@ function GameCard({ game, activeProfile, wishlist, onWishlist, compareList, onCo
         {game.coop && !game.pk && !game.sib && <span style={{ fontSize: 8, fontWeight: 700, padding: "2px 6px", borderRadius: 100, background: "rgba(56,189,248,0.1)", color: "#38bdf8" }}>👥 Co-op</span>}
         {game.soon && <span style={{ fontSize: 8, fontWeight: 800, padding: "2px 6px", borderRadius: 100, background: "rgba(239,68,68,0.12)", color: "#f87171" }}>🔜 Coming Soon</span>}
       </div>
-      <p style={{ fontSize: 11.5, color: "rgba(255,255,255,0.55)", margin: "0 0 8px", lineHeight: 1.55 }}>{game.desc}</p>
+      <p style={{ fontSize: 11.5, color: "rgba(255,255,255,0.72)", margin: "0 0 8px", lineHeight: 1.55 }}>{game.desc}</p>
       <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 6 }}>
         <ScoreBadge val={game.mc} label="Metacritic" />
         <ScoreBadge val={game.ign ? Math.round(game.ign * 10) : null} label="IGN×10" />
@@ -284,7 +294,7 @@ function GameCard({ game, activeProfile, wishlist, onWishlist, compareList, onCo
         <span style={{ fontWeight: 900, fontSize: 15, color: game.price === 0 ? "#4ade80" : "#f9a8d4" }}>{game.price === 0 ? "Free" : `$${game.price}`}</span>
       </div>
       {game.quote && <p style={{ fontSize: 10, color: "rgba(255,255,255,0.28)", margin: "0 0 8px", fontStyle: "italic", borderLeft: "2px solid rgba(99,102,241,0.3)", paddingLeft: 6, lineHeight: 1.5 }}>{game.quote}</p>}
-      <a href={retailerUrl(game)} target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, marginTop: 10, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.65)", padding: 8, borderRadius: 10, fontSize: 11, fontWeight: 700, textDecoration: "none" }}>🛒 Check Price & Buy</a>
+      <a href={retailerUrl(game)} target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, marginTop: 10, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.18)", color: "rgba(255,255,255,0.85)", padding: 8, borderRadius: 10, fontSize: 11, fontWeight: 700, textDecoration: "none" }}>🛒 Check Price & Buy</a>
     </div>
   );
 }
@@ -334,17 +344,17 @@ function ProfileManager({ profiles, setProfiles, activeProfileId, setActiveProfi
         <div style={{ background: "rgba(99,102,241,0.05)", border: "1px solid rgba(99,102,241,0.15)", borderRadius: 16, padding: 18 }}>
           <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 800, fontSize: 16, marginBottom: 14, letterSpacing: -0.3 }}>{editId ? "Edit Profile" : "New Profile"}</h3>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 12 }}>
-            <div><div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginBottom: 5 }}>Name</div><input value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} placeholder="e.g. Emma" style={iStyle} /></div>
-            <div><div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginBottom: 5 }}>Age</div><input type="number" min={2} max={17} value={form.age} onChange={e => setForm(f => ({ ...f, age: e.target.value }))} placeholder="2–17" style={iStyle} /></div>
+            <div><div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 5 }}>Name</div><input value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} placeholder="e.g. Emma" style={iStyle} /></div>
+            <div><div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 5 }}>Age</div><input type="number" min={2} max={17} value={form.age} onChange={e => setForm(f => ({ ...f, age: e.target.value }))} placeholder="2–17" style={iStyle} /></div>
           </div>
           <div style={{ marginBottom: 12 }}>
-            <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginBottom: 7 }}>Avatar</div>
+            <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 7 }}>Avatar</div>
             <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
               {KID_EMOJIS.map(e => <button key={e} onClick={() => setForm(f => ({ ...f, emoji: e }))} style={{ background: form.emoji === e ? "rgba(99,102,241,0.25)" : "rgba(255,255,255,0.05)", border: `1.5px solid ${form.emoji === e ? "#6366f1" : "rgba(255,255,255,0.08)"}`, borderRadius: 8, width: 34, height: 34, cursor: "pointer", fontSize: 16, display: "flex", alignItems: "center", justifyContent: "center" }}>{e}</button>)}
             </div>
           </div>
           <div style={{ marginBottom: 14 }}>
-            <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginBottom: 7 }}>Platforms They Own</div>
+            <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 7 }}>Platforms They Own</div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
               {CONSOLE_LIST.map(pl => <button key={pl} onClick={() => togglePl(pl)} style={{ background: form.platforms.includes(pl) ? `${CONSOLE_META[pl]?.color || "#6366f1"}22` : "rgba(255,255,255,0.04)", border: `1.5px solid ${form.platforms.includes(pl) ? CONSOLE_META[pl]?.color || "#6366f1" : "rgba(255,255,255,0.08)"}`, borderRadius: 100, padding: "4px 10px", fontSize: 11, fontWeight: 700, cursor: "pointer", color: form.platforms.includes(pl) ? CONSOLE_META[pl]?.color || "#a5b4fc" : "rgba(255,255,255,0.4)", fontFamily: "inherit" }}>{pl}</button>)}
             </div>
@@ -388,14 +398,14 @@ function GiftMode({ profiles, allGames }) {
       <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 22, fontWeight: 800, marginBottom: 18, letterSpacing: -0.5 }}>🎁 Gift Bundle Builder</h2>
       <div style={{ background: "rgba(251,191,36,0.04)", border: "1px solid rgba(251,191,36,0.15)", borderRadius: 16, padding: 18, marginBottom: 20 }}>
         <div style={{ marginBottom: 14 }}>
-          <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginBottom: 8 }}>Budget</div>
+          <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 8 }}>Budget</div>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <input type="range" min={20} max={300} step={5} value={budget} onChange={e => setBudget(Number(e.target.value))} style={{ flex: 1, accentColor: "#fbbf24" }} />
             <span style={{ fontFamily: "'Nunito',sans-serif", fontWeight: 900, fontSize: 26, color: "#fbbf24", minWidth: 60 }}>${budget}</span>
           </div>
         </div>
         <div style={{ marginBottom: 16 }}>
-          <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginBottom: 8 }}>For Which Child?</div>
+          <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 8 }}>For Which Child?</div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
             {[{ id: null, emoji: "🎲", name: "Anyone" }, ...profiles].map(p => (
               <button key={p.id ?? "any"} onClick={() => setProfileId(p.id ?? null)} style={{ background: profileId === (p.id ?? null) ? "rgba(99,102,241,0.18)" : "rgba(255,255,255,0.04)", border: `1.5px solid ${profileId === (p.id ?? null) ? "rgba(99,102,241,0.5)" : "rgba(255,255,255,0.08)"}`, borderRadius: 100, padding: "5px 12px", fontSize: 12, fontWeight: 700, cursor: "pointer", color: profileId === (p.id ?? null) ? "#a5b4fc" : "rgba(255,255,255,0.4)", fontFamily: "inherit" }}>{p.emoji} {p.name}</button>
@@ -603,11 +613,11 @@ export default function App() {
   ];
 
   const chip = (active, onClick, children, col) => (
-    <button onClick={onClick} style={{ cursor: "pointer", border: `1.5px solid ${active ? (col || "rgba(99,102,241,0.6)") : "rgba(255,255,255,0.09)"}`, borderRadius: 100, padding: "5px 12px", fontSize: 11, fontWeight: 700, fontFamily: "inherit", transition: "all 0.15s", background: active ? (col ? `${col}22` : "rgba(99,102,241,0.15)") : "rgba(255,255,255,0.03)", color: active ? (col || "#a5b4fc") : "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>{children}</button>
+    <button onClick={onClick} style={{ cursor: "pointer", border: `1.5px solid ${active ? (col || "rgba(99,102,241,0.6)") : "rgba(255,255,255,0.22)"}`, borderRadius: 100, padding: "5px 12px", fontSize: 11, fontWeight: 700, fontFamily: "inherit", transition: "all 0.15s", background: active ? (col ? `${col}22` : "rgba(99,102,241,0.15)") : "rgba(255,255,255,0.06)", color: active ? (col || "#a5b4fc") : "rgba(255,255,255,0.65)", whiteSpace: "nowrap" }}>{children}</button>
   );
 
   return (
-    <div style={{ minHeight: "100vh", background: "#08080f", fontFamily: "'DM Sans',sans-serif", color: "#f1f5f9" }}>      <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236366f1'/><text y='.9em' font-size='70' x='12'>🎮</text></svg>" />
+    <div style={{ minHeight: "100vh", background: "#0d0d16", fontFamily: "'DM Sans',sans-serif", color: "#f1f5f9" }}>      <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236366f1'/><text y='.9em' font-size='70' x='12'>🎮</text></svg>" />
       <style>{`
         * { box-sizing: border-box; }
         .gcard:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(0,0,0,0.45); border-color: rgba(255,255,255,0.13) !important; }
@@ -644,7 +654,7 @@ export default function App() {
       {/* ── PROFILE QUICK BAR ── */}
       {profiles.length > 0 && tab === "find" && (
         <div style={{ background: "rgba(99,102,241,0.04)", borderBottom: "1px solid rgba(99,102,241,0.1)", padding: "8px 16px", display: "flex", gap: 6, alignItems: "center", overflowX: "auto" }}>
-          <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.2)", whiteSpace: "nowrap" }}>Filter for:</span>
+          <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.5)", whiteSpace: "nowrap" }}>Filter for:</span>
           {chip(!activeProfileId, () => setActiveProfileId(null), "🌟 All Kids")}
           {profiles.map(p => chip(activeProfileId === p.id, () => setActiveProfileId(p.id), `${p.emoji} ${p.name} · ${p.age}y`, CONSOLE_META[p.platforms?.[0]]?.color))}
         </div>
@@ -657,26 +667,26 @@ export default function App() {
           <div>
             {/* Hero banner */}
             <div style={{ textAlign: "center", padding: "28px 16px 24px", marginBottom: 4 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 3, textTransform: "uppercase", color: "rgba(99,102,241,0.7)", marginBottom: 8 }}>Family Game Finder</div>
-              <h1 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(26px,5.5vw,44px)", fontWeight: 800, margin: "0 0 10px", lineHeight: 1.1, letterSpacing: -1.5, background: "linear-gradient(135deg,#e0e7ff 30%,#f472b6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 3, textTransform: "uppercase", color: "rgba(99,102,241,0.95)", marginBottom: 8 }}>Family Game Finder</div>
+              <h1 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(26px,5.5vw,44px)", fontWeight: 800, margin: "0 0 10px", lineHeight: 1.1, letterSpacing: -1.5, background: "linear-gradient(135deg,#ffffff 20%,#c4b5fd 55%,#f472b6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                 Find games your kids<br />will actually love
               </h1>
-              <p style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", margin: "0 auto", maxWidth: 380, lineHeight: 1.6 }}>
+              <p style={{ fontSize: 14, color: "rgba(255,255,255,0.62)", margin: "0 auto", maxWidth: 380, lineHeight: 1.6 }}>
                 {GAMES.length} curated games across every platform — filtered by age, playtime, co-op, and budget.
               </p>
               <div style={{ display: "flex", justifyContent: "center", gap: 16, marginTop: 16, flexWrap: "wrap" }}>
                 {[["🎮", `${GAMES.filter(g=>!g.consoles.includes("Mobile")).length} Console Games`], ["📱", `${GAMES.filter(g=>g.consoles.includes("Mobile")).length} Mobile Games`], ["👨‍👧", `${GAMES.filter(g=>g.pk).length} Parent+Kid`], ["🆓", `${GAMES.filter(g=>g.price===0).length} Free Games`]].map(([icon, label]) => (
-                  <div key={label} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 100, padding: "5px 14px", fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.5)", display: "flex", alignItems: "center", gap: 5 }}>
+                  <div key={label} style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.18)", borderRadius: 100, padding: "5px 14px", fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.75)", display: "flex", alignItems: "center", gap: 5 }}>
                     <span>{icon}</span><span>{label}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 20, padding: 20, marginBottom: 20 }}>
+            <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 20, padding: 20, marginBottom: 20 }}>
 
               {/* Console toggles */}
               <div style={{ marginBottom: 14 }}>
-                <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginBottom: 8 }}>Console</div>
+                <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 8 }}>Console</div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
                   {chip(selConsoles.length === 0, () => setSelConsoles([]), "All Platforms")}
                   {CONSOLE_LIST.map(c => chip(selConsoles.includes(c), () => toggleConsole(c), `${CONSOLE_META[c].icon} ${c}`, CONSOLE_META[c].color))}
@@ -693,7 +703,7 @@ export default function App() {
 
               {/* Genre */}
               <div style={{ marginBottom: 14 }}>
-                <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginBottom: 8 }}>Genre</div>
+                <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 8 }}>Genre</div>
                 <select value={genre} onChange={e => setGenre(e.target.value)} style={{ background: "rgba(255,255,255,0.06)", border: "1.5px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "7px 14px", color: genre !== "All" ? "#a5b4fc" : "rgba(255,255,255,0.45)", fontSize: 13, fontWeight: 700, fontFamily: "inherit", outline: "none", cursor: "pointer", width: "100%", maxWidth: 280 }}>
                   {GENRES.map(g => <option key={g} value={g}>{g === "All" ? "🌟 All Genres" : g.charAt(0).toUpperCase() + g.slice(1)}</option>)}
                 </select>
@@ -701,7 +711,7 @@ export default function App() {
 
               {/* Rating */}
               <div style={{ marginBottom: 14 }}>
-                <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginBottom: 8 }}>Max Age Rating</div>
+                <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 8 }}>Max Age Rating</div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
                   {Object.entries(RATINGS).map(([k, v]) => chip(maxRating === k, () => setMaxRating(k), v.label, v.color))}
                 </div>
@@ -709,7 +719,7 @@ export default function App() {
 
               {/* Multiplayer */}
               <div style={{ marginBottom: 14 }}>
-                <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginBottom: 8 }}>Multiplayer</div>
+                <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 8 }}>Multiplayer</div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
                   {[["all", "All Games"], ["coop", "👥 Co-op"], ["sibling", "👦👧 Siblings"], ["parentkid", "👨‍👧 Parent+Kid"]].map(([v, l]) => chip(multiFilter === v, () => setMultiFilter(v), l))}
                 </div>
@@ -717,7 +727,7 @@ export default function App() {
 
               {/* Playtime */}
               <div style={{ marginBottom: 14 }}>
-                <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginBottom: 8 }}>Playtime</div>
+                <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 8 }}>Playtime</div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
                   {[["all", "Any"], ["short", "Short"], ["medium", "Medium"], ["long", "Long"], ["endless", "Endless"]].map(([v, l]) => chip(playtimeFilter === v, () => setPlaytimeFilter(v), l))}
                 </div>
@@ -726,13 +736,13 @@ export default function App() {
               {/* Budget + Sort */}
               <div style={{ display: "flex", flexWrap: "wrap", gap: 16, marginBottom: 22 }}>
                 <div style={{ flex: 1, minWidth: 180 }}>
-                  <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginBottom: 8 }}>Budget</div>
+                  <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 8 }}>Budget</div>
                   <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
                     {PRICE_RANGES.map((p, i) => chip(priceIdx === i, () => setPriceIdx(i), p.label))}
                   </div>
                 </div>
                 <div>
-                  <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginBottom: 8 }}>Sort</div>
+                  <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 8 }}>Sort</div>
                   <select value={sortBy} onChange={e => setSortBy(e.target.value)} style={{ background: "rgba(255,255,255,0.06)", border: "1.5px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "7px 12px", color: "rgba(255,255,255,0.55)", fontSize: 12, fontWeight: 700, fontFamily: "inherit", outline: "none", cursor: "pointer" }}>
                     <option value="mc">🏆 Metacritic</option>
                     <option value="ign">📺 IGN Score</option>
