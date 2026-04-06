@@ -1,0 +1,88 @@
+name: Monthly Game Discovery
+
+on:
+  schedule:
+    # Runs on the 1st of every month at 10:00 UTC
+    - cron: "0 10 1 * *"
+  workflow_dispatch:
+    # Also triggerable manually from the GitHub Actions UI
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+
+    # A08 — minimal permissions; no write access unless suggestions exist
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      # A08 — pin to commit SHA (not mutable tag) to prevent supply chain attacks
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Setup Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "20"
+
+      - name: Generate lockfile
+        run: npm install --package-lock-only --ignore-scripts
+
+      # A06 — fail fast on high/critical dependency vulnerabilities
+      # Note: two *moderate* esbuild/vite vulnerabilities (GHSA-67mh-4wv8-2f99)
+      # only affect the dev server, not the production Vercel build. They require
+      # a breaking Vite major-version upgrade to fix. Set level=high to catch
+      # anything more serious while tracking the moderate issue separately.
+      - name: Audit dependencies
+        run: npm audit --audit-level=high
+
+      - name: Run game discovery script
+        run: node scripts/discover-games.js
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+
+      - name: Open draft PR if suggestions were generated
+        run: |
+          # Find the output file (path is controlled by our script — pattern is safe)
+          OUTPUT=$(ls scripts/output/suggested-games-*.json 2>/dev/null | head -1)
+          if [ -z "$OUTPUT" ]; then
+            echo "No suggestions generated this run — nothing to PR."
+            exit 0
+          fi
+
+          DATE=$(date +%Y-%m)
+          BRANCH="game-discovery/${DATE}"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add scripts/output/
+          git commit -m "chore: game discovery suggestions ${DATE}"
+          git push origin "$BRANCH"
+
+          # A08 — use jq instead of inline node -e with shell variable expansion
+          COUNT=$(jq '. | length' "$OUTPUT")
+          TITLES=$(jq -r '.[0:5] | .[] | "- " + .title' "$OUTPUT")
+
+          gh pr create \
+            --title "🎮 Game Discovery: ${COUNT} new suggestions ($(date +'%B %Y'))" \
+            --body "## Monthly AI Game Discovery
+
+          Gemini found **${COUNT}** potential new games to add to NextLevel.
+
+          ### Suggested titles
+          ${TITLES}
+
+          ### How to review
+          1. Open \`${OUTPUT}\`
+          2. Remove any entries you don't want to add
+          3. Paste approved entries into the \`GAMES\` array in \`src/App.jsx\`
+          4. Update the \`id\` fields to continue from the last game's id
+          5. Merge this PR (or close it if nothing is worth adding)
+
+          > ⚠️ Always review before merging — AI suggestions may need tweaks to prices, genres, or descriptions." \
+            --draft
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
