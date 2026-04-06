@@ -221,6 +221,7 @@ Return the JSON array now:`;
     }).map((g, i) => ({
       ...g,
       id: 1000 + i,
+      aiGen: true,
       consoles: g.consoles.filter(c => VALID_CONSOLES.includes(c)),
       genre: (g.genre || []).filter(t => VALID_GENRES.includes(t)),
       time: VALID_TIMES.includes(g.time) ? g.time : "medium",

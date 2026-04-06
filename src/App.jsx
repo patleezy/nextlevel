@@ -285,6 +285,7 @@ function GameCard({ game, activeProfile, wishlist, onWishlist, compareList, onCo
         {game.sib && <span style={{ fontSize: 8, fontWeight: 700, padding: "2px 6px", borderRadius: 100, background: "rgba(167,139,250,0.1)", color: "#a78bfa" }}>👦👧 Siblings</span>}
         {game.coop && !game.pk && !game.sib && <span style={{ fontSize: 8, fontWeight: 700, padding: "2px 6px", borderRadius: 100, background: "rgba(56,189,248,0.1)", color: "#38bdf8" }}>👥 Co-op</span>}
         {game.soon && <span style={{ fontSize: 8, fontWeight: 800, padding: "2px 6px", borderRadius: 100, background: "rgba(239,68,68,0.12)", color: "#f87171" }}>🔜 Coming Soon</span>}
+        {game.aiGen && <span style={{ fontSize: 8, fontWeight: 800, padding: "2px 6px", borderRadius: 100, background: "rgba(34,211,238,0.1)", color: "#22d3ee", border: "1px solid rgba(34,211,238,0.15)" }}>✨ AI Pick</span>}
       </div>
       <p style={{ fontSize: 11.5, color: "rgba(255,255,255,0.72)", margin: "0 0 8px", lineHeight: 1.55 }}>{game.desc}</p>
       <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 6 }}>
