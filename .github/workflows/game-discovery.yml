@@ -26,6 +26,9 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Generate lockfile
+        run: npm install --package-lock-only --ignore-scripts
+
       # A06 — fail fast on high/critical dependency vulnerabilities
       # Note: two *moderate* esbuild/vite vulnerabilities (GHSA-67mh-4wv8-2f99)
       # only affect the dev server, not the production Vercel build. They require
