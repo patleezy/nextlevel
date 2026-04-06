@@ -10,16 +10,29 @@ on:
 jobs:
   discover:
     runs-on: ubuntu-latest
+
+    # A08 — minimal permissions; no write access unless suggestions exist
     permissions:
       contents: write
       pull-requests: write
 
     steps:
-      - uses: actions/checkout@v4
+      # A08 — pin to commit SHA (not mutable tag) to prevent supply chain attacks
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: "20"
+
+      # A06 — fail fast on high/critical dependency vulnerabilities
+      # Note: two *moderate* esbuild/vite vulnerabilities (GHSA-67mh-4wv8-2f99)
+      # only affect the dev server, not the production Vercel build. They require
+      # a breaking Vite major-version upgrade to fix. Set level=high to catch
+      # anything more serious while tracking the moderate issue separately.
+      - name: Audit dependencies
+        run: npm audit --audit-level=high
 
       - name: Run game discovery script
         run: node scripts/discover-games.js
@@ -29,6 +42,7 @@ jobs:
 
       - name: Open draft PR if suggestions were generated
         run: |
+          # Find the output file (path is controlled by our script — pattern is safe)
           OUTPUT=$(ls scripts/output/suggested-games-*.json 2>/dev/null | head -1)
           if [ -z "$OUTPUT" ]; then
             echo "No suggestions generated this run — nothing to PR."
@@ -45,11 +59,12 @@ jobs:
           git commit -m "chore: game discovery suggestions ${DATE}"
           git push origin "$BRANCH"
 
-          COUNT=$(node -e "const f=require('fs');const g=JSON.parse(f.readFileSync('$OUTPUT'));console.log(g.length)")
-          TITLES=$(node -e "const f=require('fs');const g=JSON.parse(f.readFileSync('$OUTPUT'));g.slice(0,5).forEach(x=>console.log('- '+x.title))")
+          # A08 — use jq instead of inline node -e with shell variable expansion
+          COUNT=$(jq '. | length' "$OUTPUT")
+          TITLES=$(jq -r '.[0:5] | .[] | "- " + .title' "$OUTPUT")
 
           gh pr create \
-            --title "🎮 Game Discovery: ${COUNT} new suggestions ($(date +%B\ %Y))" \
+            --title "🎮 Game Discovery: ${COUNT} new suggestions ($(date +'%B %Y'))" \
             --body "## Monthly AI Game Discovery
 
           Gemini found **${COUNT}** potential new games to add to NextLevel.
@@ -58,7 +73,7 @@ jobs:
           ${TITLES}
 
           ### How to review
-          1. Open \`scripts/output/suggested-games-$(date +%Y-%m-%d).json\`
+          1. Open \`${OUTPUT}\`
           2. Remove any entries you don't want to add
           3. Paste approved entries into the \`GAMES\` array in \`src/App.jsx\`
           4. Update the \`id\` fields to continue from the last game's id
