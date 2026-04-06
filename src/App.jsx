@@ -285,6 +285,7 @@ function GameCard({ game, activeProfile, wishlist, onWishlist, compareList, onCo
         {game.sib && <span style={{ fontSize: 8, fontWeight: 700, padding: "2px 6px", borderRadius: 100, background: "rgba(167,139,250,0.1)", color: "#a78bfa" }}>👦👧 Siblings</span>}
         {game.coop && !game.pk && !game.sib && <span style={{ fontSize: 8, fontWeight: 700, padding: "2px 6px", borderRadius: 100, background: "rgba(56,189,248,0.1)", color: "#38bdf8" }}>👥 Co-op</span>}
         {game.soon && <span style={{ fontSize: 8, fontWeight: 800, padding: "2px 6px", borderRadius: 100, background: "rgba(239,68,68,0.12)", color: "#f87171" }}>🔜 Coming Soon</span>}
+        {game.aiGen && <span style={{ fontSize: 8, fontWeight: 800, padding: "2px 6px", borderRadius: 100, background: "rgba(34,211,238,0.1)", color: "#22d3ee", border: "1px solid rgba(34,211,238,0.15)" }}>✨ AI Pick</span>}
       </div>
       <p style={{ fontSize: 11.5, color: "rgba(255,255,255,0.72)", margin: "0 0 8px", lineHeight: 1.55 }}>{game.desc}</p>
       <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 6 }}>
@@ -480,6 +481,41 @@ function WishlistPanel({ wishlist, allGames, onWishlist }) {
 // ─── COMPARE ──────────────────────────────────────────────────────────────────
 function ComparePanel({ compareList, setCompareList, allGames }) {
   const games = compareList.map(id => allGames.find(g => g.id === id)).filter(Boolean);
+
+  const [aiTakes, setAiTakes] = useState(null);
+  const [aiLoading, setAiLoading] = useState(false);
+  const [aiError, setAiError] = useState(null);
+  const [aiGamesKey, setAiGamesKey] = useState("");
+
+  const currentKey = games.map(g => g.id).join("-");
+
+  useEffect(() => {
+    if (games.length < 2 || currentKey === aiGamesKey) return;
+    setAiLoading(true);
+    setAiError(null);
+    setAiTakes(null);
+    const slim = games.map(({ title, rating, genre, price, mc, ign, time, coop, pk, sib }) =>
+      ({ title, rating, genre, price, mc, ign, time, coop, pk, sib })
+    );
+    fetch("/api/ai-take", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ games: slim }),
+    })
+      .then(r => r.json())
+      .then(data => {
+        setAiTakes(data.takes || null);
+        if (data.error) setAiError(data.error);
+        setAiGamesKey(currentKey);
+      })
+      .catch(() => setAiError("Could not reach AI"))
+      .finally(() => setAiLoading(false));
+  }, [currentKey]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const refreshAi = () => {
+    setAiGamesKey("");
+  };
+
   if (games.length < 2) return <div style={{ textAlign: "center", padding: "60px 20px", color: "rgba(255,255,255,0.2)" }}><div style={{ fontSize: 48, marginBottom: 14 }}>⚖️</div><p style={{ fontWeight: 700, fontSize: 14 }}>Hit ⚖ on 2–3 game cards<br />to compare them here.</p></div>;
 
   const rows = [
@@ -502,7 +538,10 @@ function ComparePanel({ compareList, setCompareList, allGames }) {
     <div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
         <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 22, fontWeight: 800, margin: 0, letterSpacing: -0.5 }}>Compare ({games.length})</h2>
-        <button onClick={() => setCompareList([])} style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.4)", padding: "5px 12px", borderRadius: 100, fontSize: 11, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>Clear All</button>
+        <div style={{ display: "flex", gap: 6 }}>
+          <button onClick={refreshAi} style={{ background: "rgba(99,102,241,0.1)", border: "1px solid rgba(99,102,241,0.25)", color: "#a5b4fc", padding: "5px 12px", borderRadius: 100, fontSize: 11, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>✨ AI Take</button>
+          <button onClick={() => setCompareList([])} style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.4)", padding: "5px 12px", borderRadius: 100, fontSize: 11, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>Clear All</button>
+        </div>
       </div>
       <div style={{ overflowX: "auto" }}>
         <table style={{ width: "100%", borderCollapse: "separate", borderSpacing: "6px 0", minWidth: 300 }}>
@@ -524,8 +563,23 @@ function ComparePanel({ compareList, setCompareList, allGames }) {
               </tr>
             ))}
             <tr style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
-              <td style={{ padding: "10px 4px", color: "rgba(255,255,255,0.25)", fontSize: 9, fontWeight: 800, textTransform: "uppercase", letterSpacing: 1, verticalAlign: "top" }}>AI Take</td>
-              {games.map(g => <td key={g.id} style={{ padding: "8px", background: "rgba(255,255,255,0.02)", borderRadius: 6, verticalAlign: "top" }}></td>)}
+              <td style={{ padding: "10px 4px", color: "rgba(99,102,241,0.6)", fontSize: 9, fontWeight: 800, textTransform: "uppercase", letterSpacing: 1, verticalAlign: "top" }}>✨ AI Take</td>
+              {games.map((g, i) => (
+                <td key={g.id} style={{ padding: "8px", background: "rgba(99,102,241,0.04)", border: "1px solid rgba(99,102,241,0.08)", borderRadius: 6, verticalAlign: "top" }}>
+                  {aiLoading && (
+                    <div style={{ height: 44, borderRadius: 6, background: "rgba(255,255,255,0.04)", animation: "pulse 1.5s ease-in-out infinite" }} />
+                  )}
+                  {!aiLoading && aiError && (
+                    <span style={{ fontSize: 9, color: "rgba(255,255,255,0.2)", fontStyle: "italic" }}>AI unavailable</span>
+                  )}
+                  {!aiLoading && !aiError && aiTakes?.[i] && (
+                    <p style={{ margin: 0, fontSize: 10, color: "rgba(200,185,255,0.85)", lineHeight: 1.6 }}>{aiTakes[i]}</p>
+                  )}
+                  {!aiLoading && !aiError && !aiTakes && (
+                    <span style={{ fontSize: 9, color: "rgba(99,102,241,0.4)", fontStyle: "italic" }}>Click ✨ AI Take to compare</span>
+                  )}
+                </td>
+              ))}
             </tr>
           </tbody>
         </table>
@@ -623,6 +677,7 @@ export default function App() {
         .gcard:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(0,0,0,0.45); border-color: rgba(255,255,255,0.13) !important; }
         .fade-in { animation: fi 0.3s ease; }
         @keyframes fi { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes pulse { 0%,100% { opacity:0.35; } 50% { opacity:0.75; } }
         ::-webkit-scrollbar { width: 3px; height: 3px; }
         ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 100px; }
         select option { background: #1a1040; }

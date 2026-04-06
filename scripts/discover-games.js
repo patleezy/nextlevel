@@ -74,7 +74,7 @@ async function fetchRawgCandidates() {
     slug: g.slug,
     title: g.name,
     mc: g.metacritic || null,
-    esrb: g.esrb_rating?.slug || null,
+    esrb: g.esrb_rating?.slug || null,  // e.g. "everyone", "everyone-10-plus", "teen"
     released: g.released,
     platforms: (g.platforms || []).map(p => p.platform.name),
   }));
@@ -114,6 +114,7 @@ async function fetchTavilyCandidates() {
       }
 
       const data = await res.json();
+      // Collect the raw content snippets — Gemini will extract game names from them
       for (const r of data.results || []) {
         if (r.content) results.push(r.content.slice(0, 600));
       }
@@ -129,6 +130,7 @@ async function fetchTavilyCandidates() {
 function deduplicate(rawgCandidates, existingSlugs) {
   return rawgCandidates.filter(g => {
     if (existingSlugs.has(g.slug)) return false;
+    // Skip adult-rated (RAWG uses "mature" slug)
     if (g.esrb === "mature" || g.esrb === "adults-only") return false;
     return true;
   });
@@ -203,12 +205,14 @@ Return the JSON array now:`;
   const data = await res.json();
   const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || "";
 
+  // Strip markdown fences if present
   const jsonText = text.replace(/```(?:json)?\s*/gi, "").replace(/```\s*$/gi, "").trim();
 
   try {
     const parsed = JSON.parse(jsonText);
     if (!Array.isArray(parsed)) throw new Error("Expected a JSON array");
 
+    // Validate and sanitise each entry
     return parsed.filter(g => {
       if (!g.title || !g.slug) return false;
       if (!VALID_RATINGS.includes(g.rating)) return false;
@@ -260,6 +264,7 @@ async function main() {
     return;
   }
 
+  // Write output
   const date = new Date().toISOString().split("T")[0];
   const outDir = join(__dirname, "output");
   mkdirSync(outDir, { recursive: true });
@@ -274,6 +279,7 @@ async function main() {
   console.log(`  3. Update the id fields to continue from the last game's id`);
   console.log(`  4. Commit and deploy!\n`);
 
+  // Print a quick summary
   suggestions.forEach(g => {
     console.log(`  • ${g.title} [${g.rating}] — ${g.consoles.slice(0, 2).join(", ")} — ${g.desc?.slice(0, 60)}...`);
   });
