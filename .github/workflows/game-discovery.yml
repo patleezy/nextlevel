@@ -1,0 +1,70 @@
+name: Monthly Game Discovery
+
+on:
+  schedule:
+    # Runs on the 1st of every month at 10:00 UTC
+    - cron: "0 10 1 * *"
+  workflow_dispatch:
+    # Also triggerable manually from the GitHub Actions UI
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run game discovery script
+        run: node scripts/discover-games.js
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+
+      - name: Open draft PR if suggestions were generated
+        run: |
+          OUTPUT=$(ls scripts/output/suggested-games-*.json 2>/dev/null | head -1)
+          if [ -z "$OUTPUT" ]; then
+            echo "No suggestions generated this run — nothing to PR."
+            exit 0
+          fi
+
+          DATE=$(date +%Y-%m)
+          BRANCH="game-discovery/${DATE}"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add scripts/output/
+          git commit -m "chore: game discovery suggestions ${DATE}"
+          git push origin "$BRANCH"
+
+          COUNT=$(node -e "const f=require('fs');const g=JSON.parse(f.readFileSync('$OUTPUT'));console.log(g.length)")
+          TITLES=$(node -e "const f=require('fs');const g=JSON.parse(f.readFileSync('$OUTPUT'));g.slice(0,5).forEach(x=>console.log('- '+x.title))")
+
+          gh pr create \
+            --title "🎮 Game Discovery: ${COUNT} new suggestions ($(date +%B\ %Y))" \
+            --body "## Monthly AI Game Discovery
+
+          Gemini found **${COUNT}** potential new games to add to NextLevel.
+
+          ### Suggested titles
+          ${TITLES}
+
+          ### How to review
+          1. Open \`scripts/output/suggested-games-$(date +%Y-%m-%d).json\`
+          2. Remove any entries you don't want to add
+          3. Paste approved entries into the \`GAMES\` array in \`src/App.jsx\`
+          4. Update the \`id\` fields to continue from the last game's id
+          5. Merge this PR (or close it if nothing is worth adding)
+
+          > ⚠️ Always review before merging — AI suggestions may need tweaks to prices, genres, or descriptions." \
+            --draft
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
