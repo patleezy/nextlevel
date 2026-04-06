@@ -213,6 +213,7 @@ const GAMES = [
   { id:148, title:"Ori and the Will of the Wisps",       consoles:["Nintendo Switch","Xbox","PC"],                  excl:false, genre:["platformer","adventure","story"],      rating:"E",    price:30, slug:"ori-and-the-will-of-the-wisps",           mc:90, ign:9.0, time:"medium",  coop:false, sib:false, pk:true,  soon:false, desc:"Breathtakingly beautiful platformer with a touching story. One of the most visually stunning games ever made — emotional and accessible for kids 8+.", quote:"A masterpiece of motion, music, and heart. — IGN" },
   { id:149, title:"Hollow Knight",                       consoles:["Nintendo Switch","PlayStation 5","Xbox","PC"],  excl:false, genre:["adventure","exploration","platformer"], rating:"E",   price:15, slug:"hollow-knight",                           mc:90, ign:9.0, time:"long",    coop:false, sib:false, pk:false, soon:false, desc:"A stunning hand-drawn underground insect kingdom to explore. One of the greatest indie games ever — ideal for patient older kids who love discovery and challenge.", quote:"A triumph of atmosphere and design. — IGN" },
   { id:150, title:"Minecraft Education",                 consoles:["PC","Xbox","Mobile"],                           excl:false, genre:["educational","creative","sandbox"],   rating:"E",    price:0,  slug:"minecraft-education-edition",             mc:null,ign:null,time:"endless", coop:true,  sib:true,  pk:true,  soon:false, desc:"The classroom version of Minecraft — free for many schools and available for families. Build, code, and learn together in the world kids already love.", quote:"Learning disguised as the world's most popular game. — Common Sense Media" },
+  { id:151, title:"Pokémon Pokopia",                     consoles:["Nintendo Switch 2"],                            excl:true,  genre:["simulation","sandbox","collecting","family"], rating:"E", price:70, slug:"pokemon-pokopia",                        mc:90, ign:9.0, time:"endless", coop:true,  sib:true,  pk:true,  soon:false, desc:"Build a Pokémon paradise from scratch — tend, befriend, and evolve Pokémon in a peaceful world made for exploring together.", quote:"The highest-rated Pokémon game of all time. — IGN" },
 ];
 
 // ─── SMALL UTILITIES ──────────────────────────────────────────────────────────
@@ -224,7 +225,7 @@ function GameThumb({ game, size = 52 }) {
 
   useEffect(() => {
     if (src || !game.slug) return;
-    fetch(`https://api.rawg.io/api/games/${game.slug}?key=3b7ab5e4a9334b23b461609de5c93bab`)
+    fetch(`https://api.rawg.io/api/games/${game.slug}?key=${import.meta.env.VITE_RAWG_API_KEY || "3b7ab5e4a9334b23b461609de5c93bab"}`)
       .then(r => r.json())
       .then(d => { if (d.background_image) { thumbCache[game.id] = d.background_image; setSrc(d.background_image); } })
       .catch(() => {});
