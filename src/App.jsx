@@ -466,15 +466,6 @@ function WishlistPanel({ wishlist, allGames, onWishlist }) {
         ))}
       </div>
 
-      {/* Footer */}
-      <footer style={{ borderTop: "1px solid rgba(255,255,255,0.05)", padding: "20px 16px", textAlign: "center" }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginBottom: 6 }}>
-          <div style={{ width: 20, height: 20, borderRadius: 5, background: "linear-gradient(135deg,#6366f1,#ec4899)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontWeight: 900, color: "#fff", fontFamily: "'Syne',sans-serif" }}>NL</div>
-          <span style={{ fontFamily: "'Nunito',sans-serif", fontWeight: 900, fontSize: 13, background: "linear-gradient(135deg,#a5b4fc,#f472b6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>NextLevel</span>
-        </div>
-        <p style={{ color: "rgba(255,255,255,0.18)", fontSize: 11, margin: "0 0 4px" }}>Helping families find great games since 2025</p>
-        <p style={{ color: "rgba(255,255,255,0.1)", fontSize: 10, margin: 0 }}>Game data sourced from Metacritic, IGN, and RAWG · Prices may vary</p>
-      </footer>
     </div>
   );
 }
@@ -586,15 +577,6 @@ function ComparePanel({ compareList, setCompareList, allGames }) {
         </table>
       </div>
 
-      {/* Footer */}
-      <footer style={{ borderTop: "1px solid rgba(255,255,255,0.05)", padding: "20px 16px", textAlign: "center" }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginBottom: 6 }}>
-          <div style={{ width: 20, height: 20, borderRadius: 5, background: "linear-gradient(135deg,#6366f1,#ec4899)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontWeight: 900, color: "#fff", fontFamily: "'Syne',sans-serif" }}>NL</div>
-          <span style={{ fontFamily: "'Nunito',sans-serif", fontWeight: 900, fontSize: 13, background: "linear-gradient(135deg,#a5b4fc,#f472b6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>NextLevel</span>
-        </div>
-        <p style={{ color: "rgba(255,255,255,0.18)", fontSize: 11, margin: "0 0 4px" }}>Helping families find great games since 2025</p>
-        <p style={{ color: "rgba(255,255,255,0.1)", fontSize: 10, margin: 0 }}>Game data sourced from Metacritic, IGN, and RAWG · Prices may vary</p>
-      </footer>
     </div>
   );
 }
@@ -602,6 +584,7 @@ function ComparePanel({ compareList, setCompareList, allGames }) {
 // ─── MAIN APP ─────────────────────────────────────────────────────────────────
 export default function App() {
   const [tab, setTab] = useState("find");
+  const [menuOpen, setMenuOpen] = useState(false);
   const [profiles, setProfiles] = useState([]);
   const [activeProfileId, setActiveProfileId] = useState(null);
   const [wishlist, setWishlist] = useState([]);
@@ -694,17 +677,14 @@ export default function App() {
             <div style={{ width: 28, height: 28, borderRadius: 7, background: "linear-gradient(135deg,#6366f1,#ec4899)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Syne',sans-serif", fontWeight: 900, fontSize: 13, color: "#fff" }}>NL</div>
             <span style={{ fontFamily: "'Nunito',sans-serif", fontWeight: 900, fontSize: 17, letterSpacing: -0.3, background: "linear-gradient(135deg,#a5b4fc,#f472b6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>NextLevel</span>
           </div>
-          <nav style={{ display: "flex", gap: 1, flex: 1, overflowX: "auto" }}>
-            {TABS.map(t => (
-              <button key={t.id} onClick={() => setTab(t.id)} style={{ background: "transparent", border: "none", borderBottom: tab === t.id ? "2px solid #818cf8" : "2px solid transparent", color: tab === t.id ? "#a5b4fc" : "rgba(255,255,255,0.38)", padding: "0 12px", height: 54, fontSize: 12, fontWeight: 700, fontFamily: "inherit", cursor: "pointer", whiteSpace: "nowrap", transition: "all 0.15s" }}>{t.l}</button>
-            ))}
-          </nav>
+          <div style={{ flex: 1 }} />
           {activeProfile && (
-            <div onClick={() => setTab("profiles")} style={{ flexShrink: 0, display: "flex", alignItems: "center", gap: 6, background: "rgba(99,102,241,0.1)", border: "1px solid rgba(99,102,241,0.25)", borderRadius: 100, padding: "4px 10px 4px 6px", cursor: "pointer" }}>
+            <div onClick={() => { setTab("profiles"); setMenuOpen(false); }} style={{ flexShrink: 0, display: "flex", alignItems: "center", gap: 6, background: "rgba(99,102,241,0.1)", border: "1px solid rgba(99,102,241,0.25)", borderRadius: 100, padding: "4px 10px 4px 6px", cursor: "pointer" }}>
               <span style={{ fontSize: 16 }}>{activeProfile.emoji}</span>
               <span style={{ fontSize: 11, fontWeight: 700, color: "#a5b4fc" }}>{activeProfile.name}</span>
             </div>
           )}
+          <button onClick={() => setMenuOpen(true)} style={{ background: "none", border: "none", color: "rgba(255,255,255,0.7)", cursor: "pointer", fontSize: 22, padding: "0 4px", lineHeight: 1, display: "flex", alignItems: "center", flexShrink: 0 }}>☰</button>
         </div>
       </header>
 
@@ -861,6 +841,45 @@ export default function App() {
         <p style={{ color: "rgba(255,255,255,0.18)", fontSize: 11, margin: "0 0 4px" }}>Helping families find great games since 2025</p>
         <p style={{ color: "rgba(255,255,255,0.1)", fontSize: 10, margin: 0 }}>Game data sourced from Metacritic, IGN, and RAWG · Prices may vary</p>
       </footer>
+
+      {/* ── HAMBURGER DRAWER ── */}
+      {menuOpen && (
+        <div onClick={() => setMenuOpen(false)} style={{ position: "fixed", inset: 0, zIndex: 300, background: "rgba(0,0,0,0.55)", backdropFilter: "blur(2px)" }}>
+          <div onClick={e => e.stopPropagation()} style={{ position: "absolute", top: 0, right: 0, bottom: 0, width: 290, background: "#0d0d1a", borderLeft: "1px solid rgba(255,255,255,0.07)", display: "flex", flexDirection: "column", overflowY: "auto" }}>
+
+            {/* Drawer header */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 18px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <div style={{ width: 26, height: 26, borderRadius: 6, background: "linear-gradient(135deg,#6366f1,#ec4899)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Syne',sans-serif", fontWeight: 900, fontSize: 12, color: "#fff" }}>NL</div>
+                <span style={{ fontFamily: "'Nunito',sans-serif", fontWeight: 900, fontSize: 16, background: "linear-gradient(135deg,#a5b4fc,#f472b6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>NextLevel</span>
+              </div>
+              <button onClick={() => setMenuOpen(false)} style={{ background: "none", border: "none", color: "rgba(255,255,255,0.4)", cursor: "pointer", fontSize: 20, lineHeight: 1, padding: "2px 6px" }}>✕</button>
+            </div>
+
+            {/* Nav items */}
+            <div style={{ padding: "10px 0" }}>
+              <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.3)", padding: "8px 18px 4px" }}>Menu</div>
+              {TABS.map(t => (
+                <button key={t.id} onClick={() => { setTab(t.id); setMenuOpen(false); }} style={{ width: "100%", textAlign: "left", background: tab === t.id ? "rgba(99,102,241,0.12)" : "none", border: "none", borderLeft: tab === t.id ? "3px solid #818cf8" : "3px solid transparent", color: tab === t.id ? "#a5b4fc" : "rgba(255,255,255,0.7)", padding: "12px 18px", fontSize: 14, fontWeight: tab === t.id ? 700 : 500, fontFamily: "inherit", cursor: "pointer", display: "flex", alignItems: "center", gap: 10 }}>
+                  {t.l}
+                </button>
+              ))}
+            </div>
+
+            {/* Divider */}
+            <div style={{ height: 1, background: "rgba(255,255,255,0.06)", margin: "4px 18px" }} />
+
+            {/* Buy Me a Coffee */}
+            <div style={{ padding: "20px 18px 28px" }}>
+              <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.3)", marginBottom: 12 }}>Support</div>
+              <div style={{ fontSize: 14, fontWeight: 700, color: "rgba(255,255,255,0.9)", marginBottom: 8 }}>🎮 Support the Quest</div>
+              <p style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", lineHeight: 1.6, margin: "0 0 16px" }}>NextLevel is free — no ads, no paywalls. If it leveled up your family's game nights, a coffee keeps it running and growing.</p>
+              <a href="https://buymeacoffee.com/patleezy" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "#FFDD00", color: "#1a1a1a", fontWeight: 800, fontSize: 13, padding: "10px 18px", borderRadius: 100, textDecoration: "none", fontFamily: "inherit" }}>☕ Buy Me a Coffee</a>
+            </div>
+
+          </div>
+        </div>
+      )}
     </div>
   );
 }
